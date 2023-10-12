@@ -14,7 +14,13 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@monorepo-deneme/signum-components": [
+        "libs/signum-components/src/index.ts"
+      ],
+      "asset/Module": ["apps/asset/src/remote-entry.ts"],
+      "facility/Module": ["apps/facility/src/remote-entry.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

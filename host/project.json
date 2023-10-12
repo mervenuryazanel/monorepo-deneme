@@ -1,7 +1,7 @@
 {
-  "name": "asset",
-  "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "apps/asset/src",
+  "name": "host",
+  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "host/src",
   "projectType": "application",
   "targets": {
     "build": {
@@ -10,16 +10,16 @@
       "defaultConfiguration": "production",
       "options": {
         "compiler": "babel",
-        "outputPath": "dist/apps/asset",
-        "index": "apps/asset/src/index.html",
+        "outputPath": "dist/host",
+        "index": "host/src/index.html",
         "baseHref": "/",
-        "main": "apps/asset/src/main.ts",
-        "tsConfig": "apps/asset/tsconfig.app.json",
-        "assets": ["apps/asset/src/favicon.ico", "apps/asset/src/assets"],
-        "styles": ["apps/asset/src/styles.css"],
+        "main": "host/src/main.ts",
+        "tsConfig": "host/tsconfig.app.json",
+        "assets": ["host/src/favicon.ico", "host/src/assets"],
+        "styles": ["host/src/styles.css"],
         "scripts": [],
         "isolatedConfig": true,
-        "webpackConfig": "apps/asset/webpack.config.js"
+        "webpackConfig": "host/webpack.config.js"
       },
       "configurations": {
         "development": {
@@ -31,8 +31,8 @@
         "production": {
           "fileReplacements": [
             {
-              "replace": "apps/asset/src/environments/environment.ts",
-              "with": "apps/asset/src/environments/environment.prod.ts"
+              "replace": "host/src/environments/environment.ts",
+              "with": "host/src/environments/environment.prod.ts"
             }
           ],
           "optimization": true,
@@ -41,7 +41,7 @@
           "namedChunks": false,
           "extractLicenses": true,
           "vendorChunk": false,
-          "webpackConfig": "apps/asset/webpack.config.prod.js"
+          "webpackConfig": "host/webpack.config.prod.js"
         }
       }
     },
@@ -49,16 +49,16 @@
       "executor": "@nx/react:module-federation-dev-server",
       "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "asset:build",
+        "buildTarget": "host:build",
         "hmr": true,
-        "port": 4014
+        "port": 3000
       },
       "configurations": {
         "development": {
-          "buildTarget": "asset:build:development"
+          "buildTarget": "host:build:development"
         },
         "production": {
-          "buildTarget": "asset:build:production",
+          "buildTarget": "host:build:production",
           "hmr": false
         }
       }
@@ -67,23 +67,23 @@
       "executor": "@nx/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["apps/asset/**/*.{ts,tsx,js,jsx}"]
+        "lintFilePatterns": ["host/**/*.{ts,tsx,js,jsx}"]
       }
     },
     "serve-static": {
       "executor": "@nx/web:file-server",
       "defaultConfiguration": "production",
       "options": {
-        "buildTarget": "asset:build",
+        "buildTarget": "host:build",
         "watch": false,
-        "port": 4014
+        "port": 3000
       },
       "configurations": {
         "development": {
-          "buildTarget": "asset:build:development"
+          "buildTarget": "host:build:development"
         },
         "production": {
-          "buildTarget": "asset:build:production"
+          "buildTarget": "host:build:production"
         }
       }
     },
@@ -91,7 +91,7 @@
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "apps/asset/jest.config.ts",
+        "jestConfig": "host/jest.config.ts",
         "passWithNoTests": true
       },
       "configurations": {
